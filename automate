@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+DIR_CI="$1"
+DIR_SCRAPE="$2"
+DIR_STATS="$3"
+
+cd "$DIR_CI" || exit 1
+
+git clone git@github.com:arkorty/Cloud-Skills-Boost-Scraper.git "$DIR_SCRAPE"
+
+cd "$DIR_SCRAPE" || exit 1
+
+[ -f scraper ]  || go build -o scraper ./cmd/scraper || exit 1
+
+cd .. || exit 1
+
+git clone git@github.com:arkorty/Cloud-Skills-Boost-Stats.git "$DIR_STATS"
+
+[ -d "$DIR_STATS" ] || exit 1
+
+./"$DIR_SCRAPE"/scraper data/profiles.csv data/students.json || exit 1
+
+./"$DIR_SCRAPE"/internal/helpers/convert data/students.json data/codex || exit 1
+
+if [ ! -f "data/codex" ]; then
+    echo "Error: codex file does not exist"
+    exit 1
+fi
+
+cd "$DIR_STATS" || exit 1
+
+git pull --rebase
+
+cp ../data/codex public/codex
+
+git add public/codex
+git commit -m '[CI] chore: update the codex'
+git push

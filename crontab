@@ -1,0 +1,1 @@
+30 21 * * * /usr/bin/env bash $HOME/BoostStats-CI/automate BoostStats-CI Scraper Stats >> $HOME/BoostStats-CI/booststats-ci.log 2>&1

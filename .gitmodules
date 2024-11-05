@@ -1,0 +1,8 @@
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:arkorty/Cloud-Skills-Boost-Stats.git
+	branch = master
+[submodule "scraper"]
+	path = scraper
+	url = git@github.com:arkorty/Cloud-Skills-Boost-Scraper.git
+	branch = master

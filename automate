@@ -6,7 +6,7 @@ DIR_STATS="$3"
 
 cd "$DIR_CI" || exit 1
 
-git clone git@github.com:arkorty/Cloud-Skills-Boost-Scraper.git "$DIR_SCRAPE"
+git clone git@github.com:arkorty/booststats-scraper.git "$DIR_SCRAPE"
 
 cd "$DIR_SCRAPE" || exit 1
 
@@ -14,7 +14,7 @@ cd "$DIR_SCRAPE" || exit 1
 
 cd .. || exit 1
 
-git clone git@github.com:arkorty/Cloud-Skills-Boost-Stats.git "$DIR_STATS"
+git clone git@github.com:arkorty/booststats-frontend.git "$DIR_STATS"
 
 [ -d "$DIR_STATS" ] || exit 1
 
